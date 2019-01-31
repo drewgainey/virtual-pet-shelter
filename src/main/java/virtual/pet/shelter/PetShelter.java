@@ -22,10 +22,11 @@ public class PetShelter {
 		}
 	}
 
-	public Pet getPet(String askedForPet) {
+	public Pet getPet(String input) {
 		Pet petToReturn = null;
 		for (Pet allPets : pets) {
-			if (allPets.getName().equals(askedForPet)) {
+			String name = allPets.getName();
+			if(name.equals(input)) {
 				petToReturn = allPets;
 			}
 		}
@@ -34,8 +35,19 @@ public class PetShelter {
 
 	public void feed() {
 		for (Pet allPets : pets) {
-			allPets.feedPet();
+			if (allPets.isOrganic() == 1) {
+				allPets.feedPet();
+			}
 		}
+	}
+
+	public void oil() {
+		for (Pet allPets : pets) {
+			if (allPets.isOrganic() == 2) {
+				allPets.feedPet();
+			}
+		}
+
 	}
 
 	public void giveWater() {
@@ -53,8 +65,9 @@ public class PetShelter {
 
 	public void getAllPets() {
 		for (Pet allPets : pets) {
-			System.out.println(allPets.getName() + " " + allPets.getHunger() + " " + allPets.getThirst() + " "
-					+ allPets.getBoredom());
+			System.out.format("%10s %10s %5d %5d %5d",
+					allPets.getName(), allPets.isRobot(), allPets.getHealth(), allPets.getThirst(), allPets.getBoredom());
+			System.out.println("");
 		}
 
 	}
